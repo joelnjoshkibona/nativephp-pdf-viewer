@@ -127,6 +127,15 @@ Your loader should return the PDF bytes only. The viewer does not assume a backe
 
 Exposed methods are available through a Vue template ref. Page navigation controls are built into the viewer.
 
+## Theming
+
+The viewer reads the active CSS custom properties from its host page, so a class-based dark-mode
+toggle (for example, adding or removing `dark` on `<html>`) updates the viewer while it is open.
+It uses `--background`, `--foreground`, `--card`, `--card-foreground`, `--border`, `--muted`,
+`--muted-foreground`, `--primary`, `--primary-foreground`, and `--destructive`. Each property has
+a light fallback for apps that do not define the token. The PDF page itself remains white to
+preserve the document's paper appearance.
+
 ## Configuration
 
 Publish `config/pdf-viewer.php` to customize the viewer's local routes and temporary storage:

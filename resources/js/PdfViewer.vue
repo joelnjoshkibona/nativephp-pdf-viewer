@@ -275,22 +275,22 @@ defineExpose({ reload: load, share, goToPage: async (page: number) => {
 </template>
 
 <style scoped>
-.npv-root { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; color: #18262b; background: #f2f4f1; font: 15px/1.45 system-ui, sans-serif; }
-.npv-header { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; padding: calc(env(safe-area-inset-top) + 12px) 16px 12px; background: #fff; border-bottom: 1px solid #dfe5df; }
-.npv-icon-button, .npv-pages button { width: 40px; height: 40px; border: 1px solid #dfe5df; border-radius: 999px; background: #fff; color: inherit; font-size: 24px; }
+.npv-root { position: fixed; inset: 0; z-index: 1000; display: flex; flex-direction: column; color: var(--foreground, #18262b); background: var(--background, #f2f4f1); color-scheme: inherit; font: 15px/1.45 system-ui, sans-serif; }
+.npv-header { display: flex; align-items: center; gap: 12px; flex: 0 0 auto; padding: calc(env(safe-area-inset-top) + 12px) 16px 12px; background: var(--card, #fff); border-bottom: 1px solid var(--border, #dfe5df); }
+.npv-icon-button, .npv-pages button { width: 40px; height: 40px; border: 1px solid var(--border, #dfe5df); border-radius: 999px; background: var(--card, #fff); color: var(--card-foreground, var(--foreground, #18262b)); font-size: 24px; }
 .npv-heading { display: flex; flex: 1; min-width: 0; flex-direction: column; }
 .npv-heading strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.npv-heading span, .npv-message { color: #66746f; font-size: 12px; }
-.npv-share-button { min-height: 40px; padding: 0 16px; border: 0; border-radius: 12px; background: #176b3a; color: #fff; font-weight: 650; }
+.npv-heading span, .npv-message { color: var(--muted-foreground, #66746f); font-size: 12px; }
+.npv-share-button { min-height: 40px; padding: 0 16px; border: 0; border-radius: 12px; background: var(--primary, #176b3a); color: var(--primary-foreground, #fff); font-weight: 650; }
 .npv-share-button:disabled { opacity: .55; }
-.npv-pages { display: flex; align-items: center; justify-content: center; gap: 22px; padding: 8px; background: #fff; border-bottom: 1px solid #dfe5df; }
+.npv-pages { display: flex; align-items: center; justify-content: center; gap: 22px; padding: 8px; background: var(--card, #fff); border-bottom: 1px solid var(--border, #dfe5df); }
 .npv-pages button { font-size: 28px; line-height: 1; }
 .npv-pages button:disabled { opacity: .4; }
-.npv-content { display: flex; flex: 1; min-height: 0; justify-content: center; overflow: auto; padding: 12px 12px calc(env(safe-area-inset-bottom) + 16px); }
+.npv-content { display: flex; flex: 1; min-height: 0; justify-content: center; overflow: auto; padding: 12px 12px calc(env(safe-area-inset-bottom) + 16px); background: var(--muted, var(--background, #f2f4f1)); }
 .npv-page { width: 100%; overflow: auto; text-align: center; }
 .npv-page canvas, .npv-page img { display: block; max-width: 100%; height: auto; margin: 0 auto; background: #fff; box-shadow: 0 2px 12px rgb(0 0 0 / 12%); }
 .npv-message { align-self: flex-start; padding: 24px; }
-.npv-error { align-self: flex-start; width: 100%; padding: 14px; border: 1px solid #efc5c1; border-radius: 12px; background: #fff4f2; color: #b42318; }
+.npv-error { align-self: flex-start; width: 100%; padding: 14px; border: 1px solid var(--destructive, #b42318); border-radius: 12px; background: var(--card, #fff); color: var(--destructive, #b42318); }
 .npv-error button { margin-top: 10px; border: 0; background: transparent; color: inherit; font-weight: 700; text-decoration: underline; }
 .npv-inline-error { align-self: flex-start; }
 </style>
