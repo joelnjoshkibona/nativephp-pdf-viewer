@@ -2,7 +2,7 @@
     "$schema": "https://getcomposer.org/schema.json",
     "name": "blutrixx/nativephp-pdf-viewer",
     "description": "PDF preview and native sharing for NativePHP Mobile applications",
-    "type": "library",
+    "type": "nativephp-plugin",
     "keywords": ["laravel", "nativephp", "nativephp-mobile", "pdf", "pdf-viewer", "mobile"],
     "license": "MIT",
     "homepage": "https://github.com/joelnjoshkibona/nativephp-pdf-viewer",
@@ -29,6 +29,9 @@
             "providers": [
                 "Blutrixx\\PdfViewer\\PdfViewerServiceProvider"
             ]
+        },
+        "nativephp": {
+            "manifest": "nativephp.json"
         }
     },
     "minimum-stability": "stable",

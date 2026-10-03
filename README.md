@@ -1,8 +1,8 @@
 # NativePHP PDF Viewer
 
-`blutrixx/nativephp-pdf-viewer` is a reusable preview and share component for Laravel apps built with NativePHP Mobile. It gives an app a consistent PDF viewing UI while letting the app keep ownership of how each document is loaded and authorized.
+`blutrixx/nativephp-pdf-viewer` is a NativePHP Mobile plugin that provides a reusable PDF preview and share component for Laravel apps. It gives an app a consistent PDF viewing UI while letting the app keep ownership of how each document is loaded and authorized.
 
-This package previews and shares existing PDFs. It does not create PDFs or replace the server-side PDF renderer used to produce them.
+This plugin previews and shares existing PDFs. It does not create PDFs or replace the server-side PDF renderer used to produce them. It ships Laravel routes/configuration and a Vue component, but no platform bridge of its own: Android rendering is delegated to `blutrixx/nativephp-pdf-renderer`, and native sharing is delegated to `nativephp/mobile-share`.
 
 ## Rendering choices
 
@@ -26,7 +26,7 @@ The native renderer is an optional Composer dependency because it is not require
 
 ## Installation
 
-Once the package is available on Packagist:
+Install the plugin through Composer and add its frontend dependencies:
 
 ```bash
 composer require blutrixx/nativephp-pdf-viewer
@@ -36,7 +36,19 @@ php artisan vendor:publish --tag=nativephp-pdf-viewer-config
 
 To enable Android native page rendering, install `blutrixx/nativephp-pdf-renderer` in the app as well. Without it, `auto` uses PDF.js.
 
-The Laravel package auto-discovers its service provider. If your app disables package discovery, add `Blutrixx\PdfViewer\PdfViewerServiceProvider::class` to the app's providers.
+Composer auto-discovers the Laravel service provider. NativePHP also requires an explicit plugin allowlist entry in `app/Providers/NativeServiceProvider.php`:
+
+```php
+public function plugins(): array
+{
+    return [
+        // Keep your other NativePHP plugin providers here.
+        \Blutrixx\PdfViewer\PdfViewerServiceProvider::class,
+    ];
+}
+```
+
+Keep the existing NativePHP plugins in this array. The viewer's manifest currently declares no bridge functions because it delegates native work to the renderer and share plugins. If your app disables Composer package discovery, also add `Blutrixx\PdfViewer\PdfViewerServiceProvider::class` to its Laravel providers.
 
 ### Expose the Vue component to Vite
 
@@ -190,7 +202,7 @@ Lower the source PDF size or raise `max_file_size_mb` together with the PHP requ
 
 ## Development
 
-This package is distributed as Composer source, including its Vue component. No npm build step is required inside this repository.
+This plugin is distributed through Composer, including its Vue component and NativePHP manifest. No npm build step is required inside this repository.
 
 ```bash
 composer validate --no-check-publish
