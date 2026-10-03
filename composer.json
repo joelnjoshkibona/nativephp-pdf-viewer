@@ -1,0 +1,36 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "blutrixx/nativephp-pdf-viewer",
+    "description": "PDF preview and native sharing for NativePHP Mobile applications",
+    "type": "library",
+    "keywords": ["laravel", "nativephp", "nativephp-mobile", "pdf", "pdf-viewer", "mobile"],
+    "license": "MIT",
+    "homepage": "https://github.com/joelnjoshkibona/nativephp-pdf-viewer",
+    "support": {
+        "issues": "https://github.com/joelnjoshkibona/nativephp-pdf-viewer/issues",
+        "source": "https://github.com/joelnjoshkibona/nativephp-pdf-viewer"
+    },
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^11.0 || ^12.0 || ^13.0",
+        "nativephp/mobile": "^3.3.8",
+        "nativephp/mobile-share": "^1.1"
+    },
+    "suggest": {
+        "blutrixx/nativephp-pdf-renderer": "Enables Android native PdfRenderer previews; PDF.js remains the cross-platform fallback."
+    },
+    "autoload": {
+        "psr-4": {
+            "Blutrixx\\PdfViewer\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Blutrixx\\PdfViewer\\PdfViewerServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
