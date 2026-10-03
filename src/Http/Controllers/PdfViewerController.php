@@ -95,9 +95,8 @@ class PdfViewerController
                 mkdir($outputDirectory, 0700, true);
             }
             $outputPath = $outputDirectory.'/'.$document.'-'.$page.'.png';
-            // The viewer uses human-facing page numbers (starting at 1); the
-            // native plugin bridge accepts zero-based page indexes.
-            $result = $renderer->renderPage($disk->path($relativePath), $page - 1, $width, $outputPath);
+            // The native Android bridge expects a one-based page number.
+            $result = $renderer->renderPage($disk->path($relativePath), $page, $width, $outputPath);
             $imagePath = $result['cachePath'] ?? $result['path'] ?? $outputPath;
             if (! is_file($imagePath) || ! is_readable($imagePath)) {
                 return response()->json(['message' => 'The native renderer did not produce a page image.'], 500);
